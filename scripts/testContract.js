@@ -1,30 +1,39 @@
+/* global ethers */
+
 async function testContract() {
-    let account2Address = "0x46f98920c5896eff11bb90d784d6d6001d74c073"
+	let account2Address = "0xCD56fbE54FA65660037B0a1Bb233A1c92629e3B8" // dev-receiver-provider
 
-    let contract = await ethers.getContractAt("MyNFT", "0xd79bbc24875735C43eA1f32519Dd09281260a3AD")
+	let contract = await ethers.getContractAt(
+		"MyNFT",
+		"0xA56CA66c508cF329f39b3e4A6B658296C194AE39"
+	)
 
-    // call a read-only function
-    console.log("The owner of token with Id 1: ", await contract.ownerOf(1))
+	let balanceBefore = await contract.balanceOf(account2Address)
+	console.log(
+		`Balance of tokens for ${account2Address} before minting: ${balanceBefore.toNumber()}`
+	)
 
-    // filter all logs where 'to' address == account2Address - null means: any match
-    // event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
-    let filter = contract.filters.Transfer(null, account2Address, null)
+	// Call mintNFT to mint a new token
+	let tokenURI =
+		"https://gateway.pinata.cloud/ipfs/QmehEf1AhRVcsNch1bw3Ms1Xz3q2nHf4aVwAZk7EKN9vbo"
+	let txn = await contract.mintNFT(account2Address, tokenURI)
+	let txnReceipt = await txn.wait()
+	console.log("txnReceipt: ", txnReceipt)
 
-    // listen to events that correspond with the specified filter
-    contract.on(filter, (from, to, tokenId, event) => {
-        //console.log("New event emitted: ", event)
-        console.log("Emitted event arguments: ", from, to, tokenId)
-    })
+	// Call a read-only function to check the owner of token ID 1
+	let ownerAfter = await contract.ownerOf(1)
+	console.log("The owner of token with Id 1 after minting: ", ownerAfter)
 
-    // call a write function => mint a new NFT => emits the Transfer event
-    let tokenURI =
-        "https://gateway.pinata.cloud/ipfs/QmPzekhpuWN2j5yXome5dJYHy2KYHmPBdZ4qKiNbjgqRpz"
-    let txn = await contract.mintNFT(account2Address, tokenURI)
-    let txnReceipt = await txn.wait()
+	// Check the balance after minting
+	let balanceAfter = await contract.balanceOf(account2Address)
+	console.log(
+		`Balance of tokens for ${account2Address} after minting: ${balanceAfter.toNumber()}`
+	)
 
-    // return all logs (fromBlock - toBlock) for the filter defined above
-    let logs = await contract.queryFilter(filter, "latest", "latest")
-    console.log("Logs: ", logs)
+	// Check Transfer events
+	let filter = contract.filters.Transfer(null, account2Address, null)
+	let logs = await contract.queryFilter(filter, "latest", "latest")
+	console.log("Logs: ", logs)
 }
 
 testContract()

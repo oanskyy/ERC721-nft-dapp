@@ -1,15 +1,23 @@
 {
     "attributes": [
         {
-            "trait_type": "Fur",
-            "value": "White"
+            "trait_type": "Best friends",
+            "value": "Two"
         },
         {
-            "trait_type": "Eye color",
-            "value": "Blue"
+            "trait_type": "Location",
+            "value": "Paris elevator"
+        },
+        {
+            "trait_type": "Hat",
+            "value": "Beret"
+        },
+        {
+            "trait_type": "Photo color",
+            "value": "Black & White"
         }
     ],
-    "description": "The world's most adorable cat.",
-    "image": "https://gateway.pinata.cloud/ipfs/QmcSM8rxpnmknRu6HX9KWmqG4QJaBfijF3sZeuvSeDfNB7",
-    "name": "Lucky"
+    "description": "A candid moment captured on camera of two lovely girls laughing",
+    "image": "https://gateway.pinata.cloud/ipfs/QmehEf1AhRVcsNch1bw3Ms1Xz3q2nHf4aVwAZk7EKN9vbo",
+    "name": "Besties"
 }
