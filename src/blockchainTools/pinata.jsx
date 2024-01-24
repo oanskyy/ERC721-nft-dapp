@@ -30,3 +30,20 @@ export const pinJSONToIPFS = async (metadata) => {
         }
     }
 }
+
+
+// https://docs.pinata.cloud/reference/post_pinning-pinjsontoipfs
+// const options = {
+//     method: 'POST',
+//     headers: {accept: 'application/json', 'content-type': 'application/json'},
+//     body: JSON.stringify({
+//       pinataContent: {somekey: 'somevalue'},
+//       pinataOptions: {cidVersion: 1},
+//       pinataMetadata: {name: 'pinnie.json'}
+//     })
+//   };
+
+//   fetch('https://api.pinata.cloud/pinning/pinJSONToIPFS', options)
+//     .then(response => response.json())
+//     .then(response => console.log(response))
+//     .catch(err => console.error(err));

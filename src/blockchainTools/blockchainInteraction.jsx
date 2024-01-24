@@ -152,7 +152,7 @@ export const mintNFT = async (name, description, imageUrl) => {
 	//https://docs.pinata.cloud/pinata-api/pinning/pin-json
 	const metadata = {
 		pinataMetadata: {
-			name: "Cat NFT",
+			name: "Bestie NFT",
 			keyvalues: {
 				"some key": "some value"
 			}
@@ -163,12 +163,12 @@ export const mintNFT = async (name, description, imageUrl) => {
 			image: imageUrl,
 			attributes: [
 				{
-					trait_type: "Fur",
-					value: "White"
+					trait_type: "People",
+					value: "2"
 				},
 				{
-					trait_type: "Eye color",
-					value: "Blue"
+					trait_type: "Location",
+					value: "Paris"
 				}
 			]
 		}
@@ -184,20 +184,25 @@ export const mintNFT = async (name, description, imageUrl) => {
 	const tokenURI = pinataResponse.pinataUrl
 	console.log(tokenURI)
 
+	// Interface Initialization:
+	// It creates an interface using the ethers.utils.Interface class. This interface is initialized with the function signature of the mintNFT function from the Ethereum smart contract. The mintNFT function is expected to take an address parameter for the recipient and a string parameter for the token URI.
 	let iface = new ethers.utils.Interface([
 		"function mintNFT(address recipient, string memory tokenURI)"
 	])
+	// Encoding Function Data:
 	const myData = iface.encodeFunctionData("mintNFT", [
 		selectedAddress,
 		tokenURI
 	])
 
+	// It defines an object (transactionParameters) containing the necessary parameters for the Ethereum transaction
 	const transactionParameters = {
 		to: contractAddress,
 		from: selectedAddress,
 		data: myData
 	}
 
+	// It uses MetaMask's eth_sendTransaction method to send the transaction to the Ethereum network. The transactionParameters object is passed as a parameter, and the resulting transaction hash is awaited.
 	try {
 		const txHash = await window.ethereum.request({
 			method: "eth_sendTransaction",
@@ -207,6 +212,8 @@ export const mintNFT = async (name, description, imageUrl) => {
 		// second option: call function directly on contract instance => no confirmation in Metamask
 		//let txn = await contract.mintNFT(selectedAddress, tokenURI)
 		//let txnReceipt = await txn.wait()
+
+		// If the transaction is successful, it returns an object indicating success, along with a link to Etherscan where the user can check the transaction status. The transaction hash (txHash) is used to generate the link.
 
 		return {
 			success: true,
