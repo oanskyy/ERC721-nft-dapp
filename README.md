@@ -14,10 +14,7 @@ Optionally, create an account on the following sites:
 -   Alchemy (third party node provider): https://auth.alchemyapi.io/signup
 -   Pinata (web3 media management): https://www.pinata.cloud/
 
-## Step 1. Clone the project
-
-`git clone https://github.com/rspadinger/NFT-DAPP.git`
-
+## Step 1. 
 ## Step 2. Install dependencies
 
 ```
@@ -76,9 +73,10 @@ The deployment script is located at: scripts/deploy.js
 
 ## Step 6. Run the Script or Application
 
-To run the React web application, open a command windom, navigate to the project folder and type:
+To run the React web application, open a command window, navigate to the project folder and type:
 
 `$ npm start`
+`$ npm dev`
 
 The applicattion should open in your browser at: http://localhost:3000
 

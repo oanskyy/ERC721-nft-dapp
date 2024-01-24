@@ -16,7 +16,7 @@ async function main() {
         abi: JSON.parse(myNFT.interface.format("json")),
     }
 
-    //writes the ABI and address to the MyNFT.json
+    //writes the ABI and contract address to the MyNFT.json
     fs.writeFileSync("./src/MyNFT.json", JSON.stringify(data))
 }
 
