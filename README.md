@@ -74,12 +74,10 @@ The deployment script is located at: scripts/deploy.js
 ## Step 6. Run the Script or Application
 
 To run the React web application, open a command window, navigate to the project folder and type:
-
 `$ npm start`
-`$ npm dev`
 
-The applicattion should open in your browser at: http://localhost:3000
+The applicattion should open in your browser at:  http://localhost:5173/
+<!-- http://localhost:3000 -->
 
 To execute the script file, open a command windom, navigate to the project folder and type:
-
 `$ npx hardhat run scripts/mint-nft.js`

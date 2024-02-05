@@ -4,6 +4,9 @@ node_modules/
 # Ignore any files ending with .log
 *.log
 
+# Ignore environment variables file
+.env
+
 # Ignore any files ending with .env
 *.env
 *.cache
@@ -13,5 +16,7 @@ node_modules/
 .idea/
 
 # Ignore the build/ or dist/ directory (if you have one)
-build/
 dist/
+
+
+#Even when deploying to Netlify or similar services, you can continue to ignore the build/ directory in version control. Netlify will take care of the build process, and the resulting build artifacts will be created dynamically during deployment. This keeps your version control repository focused on source code and configuration files, avoiding unnecessary clutter
